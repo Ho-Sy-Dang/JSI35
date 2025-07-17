@@ -16,9 +16,8 @@ document
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
     // khai bao xac thuc
-      const auth = getAuth(app);
-      try {
-      
+    const auth = getAuth(app);
+    try {
       // login
       await signInWithEmailAndPassword(auth, email, password).then(
         (usersCredential) => {
