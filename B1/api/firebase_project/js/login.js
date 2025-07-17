@@ -15,9 +15,10 @@ document
     // lay du lieu tu input
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
-    try {
-      // khai bao xac thuc
+    // khai bao xac thuc
       const auth = getAuth(app);
+      try {
+      
       // login
       await signInWithEmailAndPassword(auth, email, password).then(
         (usersCredential) => {
