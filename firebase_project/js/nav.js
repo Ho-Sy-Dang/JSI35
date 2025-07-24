@@ -3,20 +3,20 @@ import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-import { app } from "./js/firebase_config.js";
+import { app } from "./firebase_config.js";
 
-// -------------------------
+// ------------------------
 // quy dinh danh sach link cho nav
-const link = [
+const links = [
   { text: "Home", url: "./index.html" },
   { text: "Users", url: "./pages/users.html" },
   { text: "Products", url: "./pages/products.html" },
   { text: "Orders", url: "./pages/orders.html" },
-  { text: "Login", url: ".pages/login.html" },
+  { text: "Login", url: "./pages/login.html" },
   { text: "Logout", url: "./index.html" },
 ];
 
-// -------------------------
+// -------------------------------
 // ham hien thi nav len UI
 async function showNav() {
   // kiem tra nguoi dung da dang nhap chua
@@ -30,7 +30,7 @@ async function showNav() {
       linksClone = links.filter((link) => link.text != "Login");
       // show info
       showUserInfo(userInfo.email, userInfo.uid);
-      // them ham logout
+      //them ham logout
       linksClone.map((link) => {
         if (link.text == "Logout") {
           link.clickedFunc = logout;
@@ -59,7 +59,7 @@ async function showNav() {
 
 showNav();
 
-// -------------------------
+// ------------------------------
 // ham kiem tra current user tu firebase
 async function isLogedIn() {
   const auth = getAuth(app);
@@ -79,17 +79,16 @@ async function isLogedIn() {
   });
 }
 
-// -------------------------
-// hien thi thong tin nguoi dung
+// -----------------------------------
+// hien thi thong tin nguoi dung (arrow function)
 const showUserInfo = (email, uid) =>
   (document.querySelector("#username").innerText = `${email} - ${uid}`);
 
-// -------------------------
+// -----------------------------------
 // logout
 async function logout() {
   const auth = getAuth(app);
-  await signOut(auth);
-  signOut(auth)
+  await signOut(auth)
     .then(() => {
       const isSubUrl = window.location.href.includes("pages");
       const homeLink = links.filter((link) => link.text == "Home")[0];
